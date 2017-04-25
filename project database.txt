@@ -1,0 +1,88 @@
+CREATE OR REPLACE PROCEDURE INSERTpassenger ( 
+Pa_id passenger124.p_id%TYPE, 
+p_add passenger124.p_address%TYPE,
+pa_mob passenger124.p_mobno%type,
+pa_gender passenger124.p_gender%type,
+pa_age passenger124.p_age%type,
+pa_name passenger124.p_name%type,
+fl_id passenger124.f_id%type,
+p_pass passenger124.p_pwd%type
+) 
+IS 
+BEGIN 
+INSERT INTO passenger124(p_id,p_address,p_mobno,p_gender,p_age,p_name,f_id,p_pwd) 
+VALUES (pa_id,p_add,pa_mob,pa_gender,pa_age,pa_name,fl_id,p_pass); 
+COMMIT; 
+END; 
+/
+create table flight190(f_id number primary key,arr_date date not null,
+dep_date date not null,class_type varchar2(10) not null,
+from_loc varchar2(20) not null,to_loc varchar2(20) not null
+ ,air_code number not null,route_no number);
+ 
+ 
+ CREATE OR REPLACE PROCEDURE INSERTflight ( 
+f_no flight190.f_id%TYPE, 
+ar_date flight190.arr_date%TYPE,
+
+d_date flight190.dep_date%type,
+cls flight190.class_type%type,
+f_loc flight190.from_loc%type,
+t_loc flight190.to_loc%type,
+
+a_code flight190.air_code%type,
+r_no flight190.route_no%type 
+) 
+IS 
+BEGIN 
+INSERT INTO flight190(f_id,arr_date,dep_date,class_type,from_loc,to_loc,air_code,route_no) 
+VALUES (f_no,ar_date,d_date,cls,f_loc,t_loc,a_code,r_no); 
+COMMIT; 
+END; 
+/  
+insert into flight190 values (12,'06-june-2017','06-june-2017','economy','bhubhaneswar','bangalore', 2 ,13);
+  insert into flight190 values (13,'07-june-2017','07-june-2017','business','bangalore','bhubhaneswar', 3 ,13);
+  insert into flight190 values (33,'07-june-2017','07-june-2017','business','bangalore','bhubhaneswar', 3 ,33);
+  
+  
+  
+  CREATE OR REPLACE PROCEDURE DELETEflight ( 
+fl_ide IN flight190.f_id%TYPE) 
+IS 
+BEGIN 
+DELETE FROM flight190 WHERE f_id=fl_ide; 
+END;
+
+
+
+select * from flight190;
+select * from passenger124;
+
+
+
+
+
+create or replace PROCEDURE UPDATEflight(
+f_ide IN flight190.f_id%TYPE,
+ar_dte IN flight190.arr_date%TYPE,
+de_dte IN flight190.dep_date%TYPE,
+clt IN flight190.class_type%TYPE,
+
+f_lc IN flight190.from_loc%TYPE, 
+tlc IN flight190.to_loc%TYPE
+
+
+) 
+IS 
+BEGIN 
+UPDATE flight_201277 SET f_id=f_ide,arr_date=ar_dte,dep_date=de_dte,class_type=clt,from_loc=f_lc,to_loc=tlc WHERE f_id=f_ide; 
+COMMIT; 
+END;
+
+desc flight190;
+select * from flight190;
+update flight190 set arr_date='07-july-2017' where f_id=23;
+select * from passenger124;
+select * from passenger124 where p_name like 's%';
+select * from passenger124 
+union select * from flight190;
